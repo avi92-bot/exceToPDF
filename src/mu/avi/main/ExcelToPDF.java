@@ -4,6 +4,7 @@ import java.io.FileInputStream;
 import java.util.Date;
 import java.util.Objects;
 
+import org.apache.poi.hssf.record.crypto.Biff8EncryptionKey;
 import org.apache.poi.hssf.usermodel.HSSFCell;
 import org.apache.poi.hssf.usermodel.HSSFSheet;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
@@ -18,22 +19,39 @@ public class ExcelToPDF {
 	public static final String XLSX_EXTENSION = "xlsx";
 	
 	public static void main(String[] args) {
-		String excelfilePath = "/home/avi/Documents/Eclipse/ExcelToPDF/input/FinancialSample.xlsx";
-		
-		boolean isXLS = checkExcelFormat(excelfilePath);
-		
-		if(isXLS) {
-			System.out.println("File extension is: "+ XLS_EXTENSION);
-			readFromXLSExcel(excelfilePath);
-		}else {
-			System.out.println("File extension is: "+ XLSX_EXTENSION);
-			readFromXLSXExcel(excelfilePath);
+		try {
+			Objects.requireNonNull(args);
+	        int count = 0;
+	        if(args.length == 0) {
+	        	System.out.println("Wrong argument passed");
+	        }else {
+				for (int i = 0; i < args.length; i++) {
+		            switch (args[i]) {
+		            case "-p": //set password 
+		                i++;
+		                System.out.println("Password is: " + args[i]);
+		                break;
+		            default:
+		            	boolean isXLS = checkExcelFormat(args[i]);
+		    			
+		    			if(isXLS) {
+		    				System.out.println("File extension is: "+ XLS_EXTENSION);
+		    				readFromXLSExcel(args[i]);
+		    			}else {
+		    				System.out.println("File extension is: "+ XLSX_EXTENSION);
+		    				readFromXLSXExcel(args[i]);
+		    			}
+		    			count++;
+		    			
+		    			System.out.println("file number: "+ count + "finished");
+		            }
+				}
+	        }
+
+		}catch (Exception e) {
+			e.printStackTrace();
+			System.out.println("Wrong argument passed");
 		}
-		
-		System.out.println(isXLS);
-		
-		//
-	
 	}
 	
 	public static void readFromXLSExcel(String file) { 
@@ -113,20 +131,14 @@ public class ExcelToPDF {
 	public static boolean checkExcelFormat(String fileName) {
 		
 		String excelName = null;
-		
 		int lastIndexOfDot = 0;
-		
 		int lastIndexOfSlash = 0;
-		
 		int fileNameLength = 0;
 		
 		try {
 			Objects.requireNonNull(fileName);
-
 			lastIndexOfDot = fileName.lastIndexOf('.');
-	        
 			lastIndexOfSlash = fileName.lastIndexOf('/');
-			
 			fileNameLength = fileName.length();
 	        
 	        if(lastIndexOfSlash > 0) {
@@ -137,10 +149,10 @@ public class ExcelToPDF {
 	        }
 
 	        String fileExtension = fileName.substring(lastIndexOfDot+1, fileNameLength);
-	        
 	        if(fileExtension.equalsIgnoreCase(XLS_EXTENSION)) {
 	        	return true;
 	        }
+	        
 		}catch (Exception e) {
 			e.printStackTrace();
 			return false;
