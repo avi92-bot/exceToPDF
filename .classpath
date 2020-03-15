@@ -9,5 +9,18 @@
 	<classpathentry kind="lib" path="lib/poi-ooxml-schemas-3.12-20150511.jar"/>
 	<classpathentry kind="lib" path="lib/stax-api-1.0.1.jar"/>
 	<classpathentry kind="lib" path="lib/xmlbeans-2.6.0.jar"/>
+	<classpathentry kind="lib" path="lib/html2pdf-2.1.6.jar"/>
+	<classpathentry kind="lib" path="lib/itextpdf-5.5.13.jar"/>
+	<classpathentry kind="lib" path="lib/barcodes-7.1.9.jar"/>
+	<classpathentry kind="lib" path="lib/forms-7.1.9.jar"/>
+	<classpathentry kind="lib" path="lib/hyph-7.1.9.jar"/>
+	<classpathentry kind="lib" path="lib/io-7.1.9.jar"/>
+	<classpathentry kind="lib" path="lib/kernel-7.1.9.jar"/>
+	<classpathentry kind="lib" path="lib/layout-7.1.9.jar"/>
+	<classpathentry kind="lib" path="lib/pdfa-7.1.9.jar"/>
+	<classpathentry kind="lib" path="lib/sign-7.1.9.jar"/>
+	<classpathentry kind="lib" path="lib/styled-xml-parser-7.1.9.jar"/>
+	<classpathentry kind="lib" path="lib/svg-7.1.9.jar"/>
+	<classpathentry kind="lib" path="lib/slf4j-api-1.7.13.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
